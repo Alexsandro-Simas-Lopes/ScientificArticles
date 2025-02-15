@@ -57,7 +57,6 @@
                             <a href="#"><i class="fa fa-table"></i> <span class="nav-label">My Articles</span><span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level collapse">
                                 <li><a href="http://localhost/Scientific_articles/cadastro/artigos/view/artigos.php">Articles</a></li>
-                                <li><a href="http://localhost/Scientific_articles/cadastro/artigos_img/view/artigos_img.php">Images</a></li>
                             </ul>
                         </li>
                         <li>
@@ -136,7 +135,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <table class="table table-striped table-bordered table-hover dataTables-example" id="table_artigo" page='1'>
+                                    <table class="footable table table-striped toggle-arrow-tiny default breakpoint footable-loaded table-bordered table-hover dataTables-example" id="table_artigo" page='1'>
                                         <thead>
                                             <tr>
                                                 <th data-i18n="" style="cursor: pointer; width: 2vw;" onclick="set_order_table_artigo('id')">
@@ -184,6 +183,7 @@
                                             </tr>
                                         </tfoot>
                                     </table>
+
                                     <div class="row">
                                         <div class="col-sm-5">
                                             <div class="dataTables_info" id="table_artigo_info" role="status" aria-live="polite">Mostrando <span id="cont_inicio_paginacao">0</span> a <span id="cont_fim_paginacao">0</span> de <span id="cont_total_paginacao">0</span> entradas </div>

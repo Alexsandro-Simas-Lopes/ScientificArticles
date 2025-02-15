@@ -90,7 +90,7 @@ function editar(id) {
 }
 
 function editarImg(id) {
-    fetch('../../artigos/control/artigo_editar_img.php', {
+    fetch('../../artigos_img/view/artigo_img.php', {
         method: 'POST',
         body: JSON.stringify({
             id: id
@@ -163,7 +163,6 @@ function listarartigo(filtro = {}) {
                         edit = `<button onclick="editar('${item.id}')" class="btn btn-primary dim" type="button"><i class="fa fa-pencil" data-placement="bottom" style="cursor:pointer; padding: 2px"  title="Alterar"></i></button>`;
                     }
                     if (item.id) {
-                        console.log(item.id);
                         editImg = `<button onclick="editarImg('${item.id}')" class="btn btn-warning dim" type="button"><i class="fa fa-camera" data-placement="bottom" style="cursor:pointer; padding: 2px"  title="Alterar"></i></button>`;
                     }
                     if (item.id) {
@@ -180,13 +179,14 @@ function listarartigo(filtro = {}) {
                         <td>${item.resumo}</td>
                         <td>${item.conteudo}</td>
                         <td>${item.status}</td>
+                        <td><center>${editImg}${edit}${remover}</center></td>
                         <!-- <td>${item.enviado_em}</td> -->
                         <!-- <td>${item.atualizado_em}</td> -->
                         <!-- <td><img src="${item.img}" alt="${item.name}" style="width: 50px; height: 50px; object-fit: cover;"></td> -->
-                        <td><center>${edit}${remover}</center></td>
+                        
                     `;
                     row.setAttribute('recid', item.recid);
-                    row.classList.add("tr-artigos_-" + item.id)
+                    row.classList.add("tr-artigos-" + item.id)
                     tbody.appendChild(row);
                 });
                 let start_page = content.start != 0 ? content.start : 1
@@ -225,7 +225,7 @@ function change_style_tr_artigo(id) {
     for (let index = 0; index < trs.length; index++) {
         trs[index].classList.remove('tr-selected');
     }
-    var tr = tabela.querySelector('.tr-artigos_-' + id);
+    var tr = tabela.querySelector('.tr-artigos-' + id);
     tr.classList.add('tr-selected')
 }
 
@@ -259,7 +259,7 @@ function reset_busca_artigo() {
     document.getElementById('find_indicator').innerHTML = ""
     document.getElementById('search_artigo').value = ""
     reset_order_artigo()
-    document.getElementById('titulo_ordericon').click();
+    document.getElementById('name_ordericon').click();
 }
 function clear_search_artigo() {
     document.getElementById('search_artigo').value = ""

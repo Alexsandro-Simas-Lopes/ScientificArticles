@@ -19,12 +19,15 @@ class artigo_imgdao
             throw new Exception($e->getMessage());
         }
     }
-    public static function getFindByAll(array $input = null)
+    public static function getFindIdArtigo($id_artigo)
     {
         try {
             $PDO = connectDB::getInstance();
-            $sql = "SELECT * FROM imagens_artigos ORDER BY Artigo_id ASC";
+            $sql = "SELECT * FROM imagens_artigos WHERE Artigo_id = :id_artigo";
             $stm = $PDO->prepare($sql);
+
+            $stm->bindValue(":id_artigo", $id_artigo);
+
             $stm->execute();
 
             $results = [];
@@ -238,7 +241,7 @@ class artigo_imgdao
         if (!empty($inputs['selected'])) {
             $selected = $inputs['selected'];
         }
-        $busca_artigo = self::getFindByAll($inputs);
+        $busca_artigo = self::getFindIdArtigo($inputs);
         if (!empty($busca_artigo)) {
             $opcoes = '<option value="" disabled selected >Selecione um produto</option>';
             foreach ($busca_artigo as $artg) {

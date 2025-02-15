@@ -6,8 +6,13 @@
         header("location: ../../../public/home.php "); // Se não estiver logado volta para o Catalogo
         exit;
     }
-    
     require_once("../../../parametro/configDB/connectDB.php");
+    
+    
+    require_once("../../artigos/model/artigodao.php");
+    $receivedData = file_get_contents("php://input");
+    $dataJSON = json_decode($receivedData);
+    $artg = artigodao::getFindById($dataJSON->id);//Busca o ID do artigo
 
 ?>
 
