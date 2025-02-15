@@ -6,7 +6,7 @@ ini_set('memory_limit', '256M');
 ini_set('upload_max_filesize', '50M');
 ini_set('post_max_size', '55M');
 
-require_once '../../artigos/model/artigodao.php';
+require_once '../../artigos_img/model/artigo_imgdao.php';
 
 date_default_timezone_set('America/Manaus');
 

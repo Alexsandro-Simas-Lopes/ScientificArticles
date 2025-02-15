@@ -73,9 +73,9 @@
 </div>
 <div class="modal-body modal-body-windown">
     <input type="hidden" name="id_artigo_editar" id="id_artigo_editar" value="<?= $artg->getId(); ?>">
-    <!-- <div class="ibox float-e-margins border-bottom" style="color: black;" id="section1">
+    <div class="ibox float-e-margins border-bottom" style="color: black;" id="section1">
         <div class="ibox-title">
-            <h5 style="font-size: 15px; font-weight: 1000;">Dados do artigo</h5>
+            <h5 style="font-size: 15px; font-weight: 1000;">Dados da Imagem</h5>
             <div class="ibox-tools">
                 <a class="collapse-link">
                     <i class="fa fa-chevron-up" name="expand_section" id="expand_section1"></i>
@@ -83,102 +83,80 @@
             </div>
         </div>
         <div class="ibox-content" name="content_section1" id="dados_gerais_container">
-            <div class="form-group"> 
+            <!-- SHOW UPLOAD IMAGE -->
+            <div class="wrapper wrapper-content">
                 <div class="row">
-                    <div class="col-lg-6" style="max-width: 50%;">
-                        <label for="img">Imagem: <span style="color: red;">*</span></label>
-                        <img id="preview" src="#" alt="Pré-visualização" style="max-width: 200px; display: none; border: 1px solid #ddd; padding: 5px; border-radius: 5px;" />
-                    </div>
-                    <div class="col-lg-6 dropzone my-dropzone" id="dropzoneForm">
-                        <div class="fallback">
-                            <input type="file" class="form-control" name="img" accept="image/*" id="img" onchange="previewImage()" multiple>
+                    <div class="col-lg-12">
+                        <div class="ibox float-e-margins">
+                            <div class="">
+                                <div class="file-manager">
+                                    <h5>Show:</h5>
+                                    <!-- <div class="hr-line-dashed"></div> -->
+                                    <input type="file" class="form-control" name="img" accept="image/*" id="img" onchange="previewImage()" multiple>
+                                    <label for="img" id="categoria_error" class="error" style="display: none;">Não pode estar vazia</label>
+                                    
+                                    <div class="hr-line-dashed"></div>
+                                    <h5>Folders</h5>
+                                    <ul class="folder-list" style="padding: 0">
+                                        <li><a href=""><i class="fa fa-folder"></i> Uploads</a></li>
+                                    </ul>
+                                    <h5 class="tag-title"><label for="img">Imagem: <span style="color: red;">*</span></label></h5>
+                                    <ul class="tag-list" style="padding: 0;">
+                                        <img id="preview" src="#" alt="Pré-visualização" style="max-width: 300px; display: none; border: 1px solid #ddd; border-radius: 5px;" />  
+                                    </ul>
+                                    <button id="editar_artigo_action" class="btn btn-primary btn-block" style="display: none; max-width: 300px;" onclick="salvar_artigo_img()">Upload</button>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
                         </div>
-                        <span>
-                            <strong>Drop files here or click to upload. </strong>
-                            <br> (This is just a demo dropzone. Selected files are not actually uploaded.)
-                        </span>
-                        <label for="img" id="categoria_error" class="error" style="display: none;">Não pode estar vazia</label>
                     </div>
-                </div>
-            </div>
-            <div class="row" style="margin-top: 25px;">
-                <div class="col-lg-12">
-                    <span style="color: red;"><strong>*</strong> Campos obrigatórios </span>
+                    
                 </div>
             </div>
         </div>
-    </div> -->
-
-    <div class="wrapper wrapper-content">
+        
+    </div>
+    <div class="animated fadeInRight">
         <div class="row">
-            <div class="col-lg-3">
-                <div class="ibox float-e-margins">
-                    <div class="ibox-content">
-                        <div class="file-manager">
-                            <h5>Show:</h5>
-                            <a href="#" class="file-control">Images</a>
-                            <div class="hr-line-dashed"></div>
+            <div class="col-lg-12">
+                <div class="file-box">
+                    <div class="file">
+                        <a href="#">
+                            <span class="corner"></span>
 
-                            <input type="file" class="form-control" name="img" accept="image/*" id="img" onchange="previewImage()" multiple>
-                            <label for="img" id="categoria_error" class="error" style="display: none;">Não pode estar vazia</label>
-                            
-                            <div class="hr-line-dashed"></div>
-                            <h5>Folders</h5>
-                            <ul class="folder-list" style="padding: 0">
-                                <li><a href=""><i class="fa fa-folder"></i> Uploads</a></li>
-                            </ul>
-                            <h5 class="tag-title"><label for="img">Imagem: <span style="color: red;">*</span></label></h5>
-                            <ul class="tag-list" style="padding: 0; justify-content:center; display: flex;">
-                                <img id="preview" src="#" alt="Pré-visualização" style="max-width: 300px; display: none; border: 1px solid #ddd; padding: 5px; border-radius: 5px;" />
-                                <button id="editar_artigo_action" class="btn btn-primary btn-block" style="display: none;" onclick="salvar_artigo_img()">Upload</button>
-                            </ul>
-                            <div class="clearfix"></div>
-                        </div>
+                            <div class="icon">
+                                <i class="fa fa-file"></i>
+                            </div>
+                            <div class="file-name">
+                                Document_2014.doc
+                                <br/>
+                                <small>Added: Jan 11, 2014</small>
+                            </div>
+                        </a>
                     </div>
+
                 </div>
-            </div>
-            <div class="col-lg-9 animated fadeInRight">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="file-box">
-                            <div class="file">
-                                <a href="#">
-                                    <span class="corner"></span>
+                <div class="file-box">
+                    <div class="file">
+                        <a href="#">
+                            <span class="corner"></span>
 
-                                    <div class="icon">
-                                        <i class="fa fa-file"></i>
-                                    </div>
-                                    <div class="file-name">
-                                        Document_2014.doc
-                                        <br/>
-                                        <small>Added: Jan 11, 2014</small>
-                                    </div>
-                                </a>
+                            <div class="image">
+                                <img alt="image" class="img-responsive" src="img/p1.jpg">
                             </div>
-
-                        </div>
-                        <div class="file-box">
-                            <div class="file">
-                                <a href="#">
-                                    <span class="corner"></span>
-
-                                    <div class="image">
-                                        <img alt="image" class="img-responsive" src="img/p1.jpg">
-                                    </div>
-                                    <div class="file-name">
-                                        Italy street.jpg
-                                        <br/>
-                                        <small>Added: Jan 6, 2014</small>
-                                    </div>
-                                </a>
-
+                            <div class="file-name">
+                                Italy street.jpg
+                                <br/>
+                                <small>Added: Jan 6, 2014</small>
                             </div>
-                        </div>
+                        </a>
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
 </div>
 <div class="modal-footer modal-footer-windown">
     <div class="separte_buttons">
@@ -188,12 +166,11 @@
 
 <script>
     function salvar_artigo_img() {
-        let exec = 0;
         document.getElementById("salvar_artigo_action").disabled = true;
 
         var imgInput = document.getElementById('img');
         var imgFile = imgInput.files[0]; // Obtém o arquivo selecionado
-        var id_artigo = document.getElementById('id_artigo_editar').value; // Obtém o ID do produto
+        var id_artigo = <?php echo $artg->getId(); ?>; // Obtém o ID do artigo do PHP
 
         if (!imgFile) {
             document.getElementById("img").style.border = "1px solid red";
@@ -206,10 +183,14 @@
             return;
         }
 
+        // Criar um nome fixo para as imagens (ex: artgimg1, artgimg2, ...)
+        let nomeImagem = `artgimg${new Date().getTime()}`; // Usa timestamp para garantir nomes únicos
+
         // Enviar imagem para o servidor
         const formData = new FormData();
         formData.append("img", imgFile);
-        formData.append("id", id_artigo); // Envia o ID do produto para o backend
+        formData.append("id_artigo", id_artigo); // Envia o ID do artigo
+        formData.append("nomeImagem", nomeImagem); // Nome fixo da imagem
 
         fetch('../../artigos/control/upload.php', { // Endpoint correto
             method: "POST",
@@ -220,33 +201,34 @@
             if (data.imgUrl) {
                 let imgUrl = data.imgUrl; // URL da imagem salva
 
-                let dadosProduto = {
-                    id: id_artigo, // Passa o ID do produto
-                    img: imgUrl // Usa a URL da imagem salva
+                let dadosImagem = {
+                    artigo_id: id_artigo, // Relaciona a imagem ao artigo
+                    caminho: imgUrl, // URL HTTPS da imagem
+                    descricao: nomeImagem // Nome fixo da imagem
                 };
 
-                // Agora, envie a URL da imagem para o banco de dados
-                fetch('../../artigos/control/artigo_atualizar_img.php', {
+                // Agora, envia os dados da imagem para o banco de dados
+                fetch('../../artigos/control/artigo_salvar_imagem.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    body: JSON.stringify(dadosProduto),
+                    body: JSON.stringify(dadosImagem),
                 })
                 .then(response => response.text())
                 .then(verifica => {
                     if (verifica.trim() === "200") {
-                        mostrar_mensagem("Imagem atualizada com sucesso!");
+                        mostrar_mensagem("Imagem salva com sucesso!");
                         setTimeout(() => {
                             document.getElementById("salvar_artigo_action").disabled = false;
                         }, 5);
                     } else {
-                        mostrar_mensagem("Houve um erro ao atualizar a imagem.");
+                        mostrar_mensagem("Houve um erro ao salvar a imagem.");
                         document.getElementById("salvar_artigo_action").disabled = false;
                     }
                 })
                 .catch(error => {
-                    console.error("Erro ao atualizar a imagem:", error);
+                    console.error("Erro ao salvar a imagem no banco de dados:", error);
                     document.getElementById("salvar_artigo_action").disabled = false;
                 });
 
@@ -260,6 +242,7 @@
             document.getElementById("salvar_artigo_action").disabled = false;
         });
     }
+
 
    
     function expand_dados_gerais_artigo_editar() {
