@@ -10,7 +10,18 @@
     require_once("../../../parametro/configDB/connectDB.php");
 
 ?>
+<style>
+    .modal-to-window {
+        width: 100vw !important;
+        height: 100vh !important;
+        margin: 0px !important;
+    }
 
+    .modal-to-window-content {
+        background-color: #f1f3f7 !important;
+        min-height: 100vh !important;
+    }
+</style>
 <!DOCTYPE html>
 <html>
     <head>
@@ -30,7 +41,6 @@
         <link href="../../../components/css/style.css" rel="stylesheet">
 
     </head>
-
     <body>
         <div id="wrapper">
             <nav class="navbar-default navbar-static-side" role="navigation">
