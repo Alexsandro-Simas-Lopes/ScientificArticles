@@ -104,7 +104,7 @@
                                     <ul class="tag-list" style="padding: 0;">
                                         <img id="preview" src="#" alt="Pré-visualização" style="max-width: 300px; display: none; border: 1px solid #ddd; border-radius: 5px;" />  
                                     </ul>
-                                    <button id="editar_artigo_action" class="btn btn-primary btn-block" style="display: none; max-width: 300px;" onclick="salvar_artigo_img()">Upload</button>
+                                    <button id="salvar_artigo_action" class="btn btn-primary btn-block" onclick="salvar_artigo_img()" style="display: none; max-width: 300px;">Salvar Imagem</button>
                                     <div class="clearfix"></div>
                                 </div>
                             </div>
@@ -160,13 +160,19 @@
 </div>
 <div class="modal-footer modal-footer-windown">
     <div class="separte_buttons">
-        <button class="btn btn-success" type="button" data-dismiss="modal"> Voltar ao Lobby </button>
+    <button class="btn btn-success" type="button" data-dismiss="modal"> Voltar ao Lobby </button>
     </div>
 </div>
 
 <script>
     function salvar_artigo_img() {
-        document.getElementById("salvar_artigo_action").disabled = true;
+        const botaoSalvar = document.getElementById("salvar_artigo_action");
+        if (!botaoSalvar) {
+            console.error("Botão salvar_artigo_action não encontrado!");
+            return;
+        }
+        botaoSalvar.disabled = true;
+
 
         var imgInput = document.getElementById('img');
         var imgFile = imgInput.files[0]; // Obtém o arquivo selecionado
@@ -183,65 +189,32 @@
             return;
         }
 
-        // Criar um nome fixo para as imagens (ex: artgimg1, artgimg2, ...)
-        let nomeImagem = `artgimg${new Date().getTime()}`; // Usa timestamp para garantir nomes únicos
-
         // Enviar imagem para o servidor
         const formData = new FormData();
         formData.append("img", imgFile);
         formData.append("id_artigo", id_artigo); // Envia o ID do artigo
-        formData.append("nomeImagem", nomeImagem); // Nome fixo da imagem
 
-        fetch('../../artigos/control/upload.php', { // Endpoint correto
+        fetch('/Scientific_articles/cadastro/artigos_img/control/artigo_salvar_imagem.php',{ // Agora chamamos apenas um endpoint
             method: "POST",
             body: formData,
         })
         .then(response => response.json())
         .then(data => {
             if (data.imgUrl) {
-                let imgUrl = data.imgUrl; // URL da imagem salva
-
-                let dadosImagem = {
-                    artigo_id: id_artigo, // Relaciona a imagem ao artigo
-                    caminho: imgUrl, // URL HTTPS da imagem
-                    descricao: nomeImagem // Nome fixo da imagem
-                };
-
-                // Agora, envia os dados da imagem para o banco de dados
-                fetch('../../artigos/control/artigo_salvar_imagem.php', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify(dadosImagem),
-                })
-                .then(response => response.text())
-                .then(verifica => {
-                    if (verifica.trim() === "200") {
-                        mostrar_mensagem("Imagem salva com sucesso!");
-                        setTimeout(() => {
-                            document.getElementById("salvar_artigo_action").disabled = false;
-                        }, 5);
-                    } else {
-                        mostrar_mensagem("Houve um erro ao salvar a imagem.");
-                        document.getElementById("salvar_artigo_action").disabled = false;
-                    }
-                })
-                .catch(error => {
-                    console.error("Erro ao salvar a imagem no banco de dados:", error);
-                    document.getElementById("salvar_artigo_action").disabled = false;
-                });
-
+                mostrar_mensagem("Imagem salva com sucesso!");
             } else {
-                console.error("Erro no upload da imagem:", data.error);
-                document.getElementById("salvar_artigo_action").disabled = false;
+                mostrar_mensagem("Houve um erro ao salvar a imagem.");
             }
         })
         .catch(error => {
             console.error("Erro ao enviar a imagem:", error);
+            mostrar_mensagem("Erro ao salvar a imagem.");
+        })
+        .finally(() => {
             document.getElementById("salvar_artigo_action").disabled = false;
         });
     }
+
 
 
    
@@ -259,7 +232,7 @@
     function previewImage() {
         var input = document.getElementById('img');
         var preview = document.getElementById('preview');
-        var ImgIdAdd = document.getElementById('editar_artigo_action');
+        var ImgIdAdd = document.getElementById('salvar_artigo_action');
 
         if (input.files && input.files[0]) {
             var reader = new FileReader();

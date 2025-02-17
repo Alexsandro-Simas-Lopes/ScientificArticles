@@ -114,13 +114,17 @@ class artigo_imgdao
             $stm->bindValue(":Caminho", $artg->getCaminho());
             $stm->bindValue(":Descricao", $artg->getDescricao());
             $stm->bindValue(":Enviado_em", $artg->getEnviado_em());
-            $stm->execute();
 
-            return true;
+            if ($stm->execute()) {
+                return true;
+            } else {
+                return false;
+            }
         } catch (Exception $e) {
             throw new Exception($e->getMessage());
         }
     }
+
     public static function delete($Id)
     {
         try {
